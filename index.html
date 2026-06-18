@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NHI-ZLDM: Non-Human Identity Attacks & Defense Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Network Background Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-area">
+        <div class="logo-shield">
+          <svg viewBox="0 0 24 24" class="shield-icon" width="32" height="32">
+            <path
+              d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3zm0 18.92c-3.95-1.12-7-5.07-7-9.5V6.3l7-2.33 7 2.33v5.12c0 4.43-3.05 8.38-7 9.5z"
+              fill="currentColor" />
+            <path d="M12 7l-4 4h3v4h2v-4h3l-4-4z" fill="currentColor" class="arrow-up" />
+          </svg>
+        </div>
+        <div class="title-meta">
+          <h1>NHI-ZLDM</h1>
+          <p class="subtitle">Non-Human Identity Zero-Trust Lifecycle Defense Model</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="app-nav">
+      <button class="nav-tab active" data-target="dashboard-page">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+          class="tab-icon">
+          <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+          <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+          <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+          <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+        </svg>
+        Dashboard & Concepts
+      </button>
+      <button class="nav-tab" data-target="simulator-page" id="tab-simulator">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+          class="tab-icon">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Interactive Simulator
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="app-main">
+
+    <!-- PAGE 1: DASHBOARD & CONCEPTS -->
+    <section id="dashboard-page" class="page-view active">
+      <div class="dashboard-grid">
+
+        <!-- Identity Comparison Card -->
+        <div class="grid-card double-width glass-panel">
+          <div class="card-header">
+            <h2 class="card-title text-glow">Identity Paradigm Shift</h2>
+            <p class="card-subtitle">Comparing security parameters: Human vs. Non-Human Identities (NHI)</p>
+          </div>
+          <div class="card-body scrollable">
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Security Dimension</th>
+                    <th>Human Identity</th>
+                    <th>Non-Human Identity (NHI)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="dimension-cell">
+                      <strong>Lifecycle</strong>
+                      <span class="dim-sub">Governance model</span>
+                    </td>
+                    <td class="human-cell">
+                      <div class="status-indicator success">Onboarding &rarr; Offboarding</div>
+                      <p class="cell-desc">HR-managed with clear end dates and automated deprovisioning.</p>
+                    </td>
+                    <td class="nhi-cell">
+                      <div class="status-indicator danger">No Defined End Date</div>
+                      <p class="cell-desc">Orphaned credentials persist long after project/developer leaves.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dimension-cell">
+                      <strong>Authentication</strong>
+                      <span class="dim-sub">Verification mechanisms</span>
+                    </td>
+                    <td class="human-cell">
+                      <div class="status-indicator success">Passwords + MFA</div>
+                      <p class="cell-desc">Single Sign-On (SSO) backed by Multi-Factor Authentication.</p>
+                    </td>
+                    <td class="nhi-cell">
+                      <div class="status-indicator danger">API Keys, Tokens, Certs</div>
+                      <p class="cell-desc">Hardcoded static values; no interactive MFA equivalent possible.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dimension-cell">
+                      <strong>Monitoring</strong>
+                      <span class="dim-sub">Anomaly detection</span>
+                    </td>
+                    <td class="human-cell">
+                      <div class="status-indicator success">Behavioral Baselines</div>
+                      <p class="cell-desc">Anomalous login locations/times are easily detected by SIEM.</p>
+                    </td>
+                    <td class="nhi-cell">
+                      <div class="status-indicator danger">Under-monitored (68%)</div>
+                      <p class="cell-desc">Programmatic calls blend with normal high-volume server traffic.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dimension-cell">
+                      <strong>Privilege Level</strong>
+                      <span class="dim-sub">Access rights scale</span>
+                    </td>
+                    <td class="human-cell">
+                      <div class="status-indicator success">RBAC & Access Reviews</div>
+                      <p class="cell-desc">Role-Based Access Control regularly audited for compliance.</p>
+                    </td>
+                    <td class="nhi-cell">
+                      <div class="status-indicator danger">Excessive Privileges (97%)</div>
+                      <p class="cell-desc">Service accounts often granted full Admin rights for "convenience".</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dimension-cell">
+                      <strong>Scale</strong>
+                      <span class="dim-sub">Inventory size</span>
+                    </td>
+                    <td class="human-cell">
+                      <div class="status-indicator warning">Bounded by Headcount</div>
+                      <p class="cell-desc">Manageable scaling, limited strictly by organization size.</p>
+                    </td>
+                    <td class="nhi-cell">
+                      <div class="status-indicator danger">50x-100x Human Count</div>
+                      <p class="cell-desc">Explosive machine growth, accelerated by integrations & AI agents.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Lifecycle Flow Card -->
+        <div class="grid-card full-width glass-panel">
+          <div class="card-header">
+            <h2 class="card-title text-glow">NHI Lifecycle & Threat Mapping</h2>
+            <p class="card-subtitle">Click on any lifecycle stage to inspect vulnerability points and ZLDM defenses</p>
+          </div>
+          <div class="card-body">
+            <!-- Lifecycle Steps Diagram -->
+            <div class="lifecycle-timeline">
+              <div class="lifecycle-step active" data-stage="creation">
+                <div class="step-num">1</div>
+                <div class="step-label">Creation</div>
+                <div class="step-meta">Dev / CI-CD</div>
+              </div>
+              <div class="timeline-connector"></div>
+              <div class="lifecycle-step" data-stage="provisioning">
+                <div class="step-num">2</div>
+                <div class="step-label">Provisioning</div>
+                <div class="step-meta">Scope & Roles</div>
+              </div>
+              <div class="timeline-connector"></div>
+              <div class="lifecycle-step" data-stage="use">
+                <div class="step-num">3</div>
+                <div class="step-label">Active Use</div>
+                <div class="step-meta">API & Tasks</div>
+              </div>
+              <div class="timeline-connector"></div>
+              <div class="lifecycle-step" data-stage="rotation">
+                <div class="step-num">4</div>
+                <div class="step-label">Rotation</div>
+                <div class="step-meta">Credentials</div>
+              </div>
+              <div class="timeline-connector text-dashed"></div>
+              <div class="lifecycle-step" data-stage="decommission">
+                <div class="step-num">5</div>
+                <div class="step-label">Decommission</div>
+                <div class="step-meta">Revocation</div>
+              </div>
+            </div>
+
+            <!-- Stage Detail Dashboard -->
+            <div class="stage-detail-panel" id="stage-detail">
+              <div class="detail-section heading-sec">
+                <h3 id="detail-stage-name" class="text-glow">Creation Stage</h3>
+                <p id="detail-stage-desc">When developers or CI/CD pipelines generate credentials (API keys, secrets,
+                  certificates) to integrate tools.</p>
+              </div>
+              <div class="detail-split">
+                <div class="detail-card risk-card">
+                  <div class="detail-card-header">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                      class="card-icon">
+                      <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2">
+                      </polygon>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <span>Vulnerability / Risk</span>
+                  </div>
+                  <h4 id="detail-risk-title">Hardcoded Secrets in Source Code</h4>
+                  <p id="detail-risk-desc">Credentials saved inside GitHub codebases, configuration files, or
+                    documentation templates where unauthorized eyes or automated scrapers can easily find them.</p>
+                </div>
+                <div class="detail-card defense-card">
+                  <div class="detail-card-header">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                      class="card-icon">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span>ZLDM Defense Control</span>
+                  </div>
+                  <h4 id="detail-defense-title">Secrets Vault Integration</h4>
+                  <p id="detail-defense-desc">Utilize vaults to inject credentials dynamically into target environments
+                    rather than storing them statically. Enforce pre-commit scanners to block credentials before code
+                    commits.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NHI-ZLDM Layers Blueprint -->
+        <div class="grid-card full-width glass-panel">
+          <div class="card-header">
+            <h2 class="card-title text-glow">NHI-ZLDM Architecture Overview</h2>
+            <p class="card-subtitle">The three layers of the Zero-Trust Lifecycle Defense Model</p>
+          </div>
+          <div class="card-body">
+            <div class="layers-grid">
+
+              <!-- Layer 1 -->
+              <div class="layer-blueprint-card">
+                <div class="layer-badge l1">Layer 1</div>
+                <h3>Proactive Hardening</h3>
+                <p class="layer-summary">Neutralizes risk at the source before credentials go live.</p>
+                <ul class="layer-list">
+                  <li>
+                    <strong>Secrets Vault Integration</strong>
+                    <span>No plaintext secrets in settings or configs</span>
+                  </li>
+                  <li>
+                    <strong>Privilege Justification</strong>
+                    <span>Enforce minimum permissions before activation</span>
+                  </li>
+                  <li>
+                    <strong>CI/CD Secrets Scan</strong>
+                    <span>Pre-commit scanning blocks leaked strings</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Layer 2 -->
+              <div class="layer-blueprint-card">
+                <div class="layer-badge l2">Layer 2</div>
+                <h3>Active Governance</h3>
+                <p class="layer-summary">Manages active identities with absolute authorization.</p>
+                <ul class="layer-list">
+                  <li>
+                    <strong>Inventory Registry</strong>
+                    <span>Unregistered NHI services blocked automatically</span>
+                  </li>
+                  <li>
+                    <strong>Just-In-Time (JIT)</strong>
+                    <span>Short-lived tokens that auto-expire on task end</span>
+                  </li>
+                  <li>
+                    <strong>Auto-Rotation Engine</strong>
+                    <span>Automated rotation eliminates long-lived keys</span>
+                  </li>
+                  <li>
+                    <strong>Decommission Trigger</strong>
+                    <span>Project retirement automatically revokes keys</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Layer 3 -->
+              <div class="layer-blueprint-card">
+                <div class="layer-badge l3">Layer 3</div>
+                <h3>Threat Containment</h3>
+                <p class="layer-summary">Identifies and neutralizes active compromises.</p>
+                <ul class="layer-list">
+                  <li>
+                    <strong>Behavioral Baselines</strong>
+                    <span>Learns regular access frequencies and IPs</span>
+                  </li>
+                  <li>
+                    <strong>Anomaly Scoring</strong>
+                    <span>Calculates risk scores for sudden activity spikes</span>
+                  </li>
+                  <li>
+                    <strong>Containment Playbook</strong>
+                    <span>Tiered reactions: Alert, Throttle, or Suspend</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAGE 2: INTERACTIVE SIMULATOR -->
+    <section id="simulator-page" class="page-view">
+      <div class="simulator-layout">
+
+        <!-- Controls Panel -->
+        <div class="sim-panel config-panel glass-panel">
+          <div class="card-header">
+            <h2 class="card-title text-glow">Simulation Center</h2>
+            <p class="card-subtitle">Configure security levels and target breaches</p>
+          </div>
+
+          <div class="config-section">
+            <label class="control-label">Select Historical Breach Scenario</label>
+            <div class="scenario-selector">
+              <button class="scenario-btn active" data-scenario="nyt">
+                <div class="scen-title">New York Times (2024)</div>
+                <div class="scen-vuln">Vulnerability: Exposed GitHub PAT</div>
+              </button>
+              <button class="scenario-btn" data-scenario="cloudflare">
+                <div class="scen-title">Cloudflare (2024)</div>
+                <div class="scen-vuln">Vulnerability: Stale Okta Token</div>
+              </button>
+              <button class="scenario-btn" data-scenario="adobe">
+                <div class="scen-title">Adobe Commerce (2024)</div>
+                <div class="scen-vuln">Vulnerability: Static API key abuse</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Description of Selected Breach -->
+          <div class="scenario-info-box" id="scenario-desc-box">
+            <h4 id="info-title">New York Times Breach (2024)</h4>
+            <p id="info-text">An attacker found a developer's GitHub Personal Access Token (PAT) leaked in a public
+              repository. The token had excessive permissions, allowing the attacker to clone repositories and steal
+              270GB of code and documentation.</p>
+          </div>
+
+          <!-- Defense Toggles -->
+          <div class="config-section">
+            <label class="control-label">NHI-ZLDM Defense Framework Toggles</label>
+            <div class="toggles-list">
+
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="toggle-name">Layer 1: Proactive Hardening</div>
+                  <div class="toggle-desc">Secrets Vault & Pre-Commit Hook Scanning</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="toggle-l1">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="toggle-name">Layer 2: Active Governance</div>
+                  <div class="toggle-desc">JIT Token Issuance & Automated Rotation</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="toggle-l2">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-row">
+                <div class="toggle-info">
+                  <div class="toggle-name">Layer 3: Threat Containment</div>
+                  <div class="toggle-desc">Behavioral Anomaly Detection & Auto-Suspend</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="toggle-l3">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="run-btn" id="btn-run-sim">
+            <span class="run-text">Run Attack Simulation</span>
+            <span class="pulse-ring"></span>
+          </button>
+        </div>
+
+        <!-- Simulation Screen & Logs -->
+        <div class="sim-panel display-panel">
+
+          <!-- Visual Arena -->
+          <div class="visual-arena-card glass-panel">
+            <div class="arena-header">
+              <span class="arena-label text-glow">Threat Visualization Canvas</span>
+              <div class="shield-indicator" id="overall-shield">
+                <span class="indicator-dot"></span>
+                <span class="indicator-text">SYSTEM DEFENDED</span>
+              </div>
+            </div>
+
+            <div class="canvas-container" id="canvas-container">
+              <!-- Visual Nodes -->
+              <div class="arena-node attacker-node" id="node-attacker" style="top: 25%; left: 10%;">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zM9 7a3 3 0 0 1 6 0v3H9V7zm9 13H6v-8h12v8z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="node-name">Attacker</div>
+              </div>
+
+              <div class="arena-node repo-node" id="node-repo" style="top: 25%; left: 45%;">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                </div>
+                <div class="node-name">GitHub / VCS</div>
+              </div>
+
+              <div class="arena-node iam-node" id="node-iam" style="top: 70%; left: 30%;">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </div>
+                <div class="node-name">Identity Provider</div>
+              </div>
+
+              <div class="arena-node system-node" id="node-system" style="top: 50%; left: 80%;">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+                  </svg>
+                </div>
+                <div class="node-name">Production DB</div>
+              </div>
+
+              <div class="arena-node command-node" id="node-command" style="top: 80%; left: 65%;">
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div class="node-name">ZLDM SOC</div>
+              </div>
+
+              <!-- Visual Connections (SVG lines dynamically drawn or custom styled absolute lines) -->
+              <svg class="arena-svg" id="arena-svg">
+                <!-- Attacker to Github -->
+                <line x1="10%" y1="25%" x2="45%" y2="25%" class="connection-line" id="line-attacker-repo" />
+                <!-- Attacker to IAM -->
+                <line x1="10%" y1="25%" x2="30%" y2="70%" class="connection-line" id="line-attacker-iam" />
+                <!-- GitHub to DB -->
+                <line x1="45%" y1="25%" x2="80%" y2="50%" class="connection-line" id="line-repo-system" />
+                <!-- IAM to DB -->
+                <line x1="30%" y1="70%" x2="80%" y2="50%" class="connection-line" id="line-iam-system" />
+                <!-- SOC links -->
+                <line x1="65%" y1="80%" x2="80%" y2="50%" class="connection-line control-line" id="line-soc-system" />
+                <line x1="65%" y1="80%" x2="30%" y2="70%" class="connection-line control-line" id="line-soc-iam" />
+              </svg>
+
+              <!-- Credential Packet (Animated Dot) -->
+              <div class="credential-packet" id="credential-packet"></div>
+
+              <!-- Shield Checkpoint Animations -->
+              <div class="shield-checkpoint" id="checkpoint-l1" style="top: 25%; left: 30%; display:none;">
+                <div class="shield-ring"></div>
+                <span class="checkpoint-text">Vault Scan</span>
+              </div>
+
+              <div class="shield-checkpoint" id="checkpoint-l2" style="top: 60%; left: 55%; display:none;">
+                <div class="shield-ring"></div>
+                <span class="checkpoint-text">JIT Expiry</span>
+              </div>
+
+              <div class="shield-checkpoint" id="checkpoint-l3" style="top: 65%; left: 72%; display:none;">
+                <div class="shield-ring"></div>
+                <span class="checkpoint-text">ITDR Trigger</span>
+              </div>
+
+              <!-- Simulation Alert Modal Overlays -->
+              <div class="sim-alert-overlay" id="sim-alert">
+                <div class="sim-alert-content">
+                  <h3 id="alert-title">Simulation Status</h3>
+                  <p id="alert-text">Simulator is ready.</p>
+                  <button class="alert-close-btn" id="btn-close-alert">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- Console Terminal -->
+          <div class="console-card glass-panel">
+            <div class="console-header">
+              <span class="console-title text-glow">System Logs & Incident Timeline</span>
+              <button class="console-clear-btn" id="btn-clear-logs">Clear Logs</button>
+            </div>
+            <div class="console-body" id="console-logs">
+              <div class="log-line text-muted">[22:08:50] [INFO] Security Operations Command initialized. NHI-ZLDM
+                defense engine standing by...</div>
+              <div class="log-line text-muted">[22:08:50] [INFO] Select a scenario and press "Run Attack Simulation" to
+                begin.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Group 12 Research Project. Prepared for the Defense Committee.</p>
+      <div class="paper-cite">
+        <span>Reference: <em>Non-Human Identity Attacks: Risks, Exploitation Techniques, and Defense
+            Strategies</em></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
